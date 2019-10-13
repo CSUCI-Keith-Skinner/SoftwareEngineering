@@ -8,7 +8,6 @@
 |-------------:|:----------------------:|:--------------------------------------:|
 |        Email | jason.isaacs@csuci.edu | nicholas.dolan-stern630@myci.csuci.edu |
 |      Website |   Isaacs.cs.csuci.edu  |                                        |
-|        Phone |     (805) 437-8991     |             (310) 773-8095             |
 |       Office |        BTW 2285        |                SIE 1141                |
 | Office Hours |      Tuesday 4-6pm     |           Monday 10am - 12pm           |
 

@@ -1,0 +1,301 @@
+\documentclass[letterpaper, 16pt]{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{physics}
+\usepackage{array}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\begin{enumerate}
+    \item 
+        Given a skid-steer wheeled mobile robot similar to the robots we have in the lab with a pose at time t of:
+        \begin{align}
+            p(t) &= 
+            \begin{bmatrix}
+                x(t) \\
+                y(t) \\
+                z(t)
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                2 \\
+                5 \\
+                \frac{\pi}{5}
+            \end{bmatrix}
+        \end{align}
+        and a forward speed of 1.5 (m/sec), predict the pose at time t+3 using dead reckoning.
+        \\
+        \\ Assuming the car simply drives straight between time t and t+3:
+        
+        \begin{equasion}
+        \begin{aligned}
+        \\ \rightarrow 1.5 \frac{m}{sec} \cdot 3 sec = 4.5 m
+        \end{aligned}
+        \end{equasion}
+        
+        \begin{equasion}
+        \begin{aligned}
+        \\ \rightarrow \Delta x &= r \cdot cos(\theta)
+        \\                      &= 4.5cos(\frac{\pi}{5})
+        \\                      &= 3.6406
+        \\
+        \\ \rightarrow \Delta y &= r \cdot sin(\theta)
+        \\                      &= 4.5sin(\frac{\pi}{5})
+        \\                      &= 2.6645
+        \\
+        \\ \rightarrow \Delta \theta &= 0
+        \\
+        \\ \rightarrow \Delta p &= \begin{bmatrix} 3.6406 \\ 2.66450 \\ 0\end{bmatrix}
+        \end{aligned}
+        \end{equasion}
+        
+        \begin{equasion}
+        \begin{aligned}
+        \\
+        \\ \rightarrow p(t+3) &= p(t) + \Delta p
+        \\ \therefore  p(t+3) &= \begin{bmatrix} 2 \\ 5 \\ \frac{\pi}{5} \end{bmatrix} +
+              \begin{bmatrix} 3.6406 \\ 2.6645 \\ 0 \end{bmatrix} 
+        \\ &= \begin{bmatrix} 5.6406 \\ 7.6645 \\ \frac{\pi}{5} \end{bmatrix} 
+        \end{aligned}
+        \end{equasion}
+        
+\pagebreak
+    \item
+        Prove that the 2 x 2 matrix:
+        \begin{align}
+            R(\alpha) = 
+            \begin{bmatrix}
+                cos(\alpha) & -sin(\alpha) \\
+                sin(\alpha) & cos(\alpha)
+            \end{bmatrix}
+        \end{align}
+        meets the three criteria for being a valid rotation matrix (i.e. a special orthogonal matrix). \\
+        
+        \begin{enumerate}[1.  ]
+            \item $R^{T}$ = $R^{-1}$ \\
+            
+                \begin{equasion}
+                \begin{aligned}
+                    R^{T} &=&&
+                        \begin{bmatrix}
+                            cos(\alpha)  & sin(\alpha) \\
+                            -sin(\alpha) & cos(\alpha)
+                        \end{bmatrix} \\
+                \end{aligned}
+                \end{equasion}
+                
+                \begin{equasion}
+                \begin{aligned}
+                    \\RR^{T} &=
+                    \begin{bmatrix}
+                        cos(\alpha) & -sin(\alpha) \\
+                        sin(\alpha) & cos(\alpha)
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        cos(\alpha)  & sin(\alpha) \\
+                        -sin(\alpha) & cos(\alpha)
+                    \end{bmatrix}
+                    
+                    \\RR^{T} &=
+                    \begin{bmatrix}
+                        (cos(\alpha))^{2} + (-1)^{2}(sin(\alpha))^2 & 
+                            cos(\alpha)sin(\alpha) + (-1)cos(\alpha)sin(\alpha) \\
+                        (-1)cos(\alpha)sin(\alpha) + cos(\alpha)sin(\alpha) &
+                            (cos(\alpha))^{2} + (sin(\alpha))^2
+                    \end{bmatrix}
+                    \\RR^{T} &=
+                    \begin{bmatrix}
+                        1 & 0 \\
+                        0 & 1 \\
+                    \end{bmatrix}
+                    \\RR^{T} &= I_{3}
+                \end{aligned}
+                \end{equasion}
+                
+                \begin{equasion}
+                \begin{aligned}
+                    \\R^{T}R &=
+                    \begin{bmatrix}
+                        cos(\alpha)  & sin(\alpha) \\
+                        -sin(\alpha) & cos(\alpha)
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        cos(\alpha) & -sin(\alpha) \\
+                        sin(\alpha) & cos(\alpha)
+                    \end{bmatrix}
+                    
+                    \\R^{T}R &=
+                    \begin{bmatrix}
+                        (cos(\alpha))^{2} + (sin(\alpha))^2 & 
+                            (-1)cos(\alpha)sin(\alpha) + cos(\alpha)sin(\alpha) \\
+                        (-1)cos(\alpha)sin(\alpha) + cos(\alpha)sin(\alpha) &
+                            (-1)^{2}(sin(\alpha))^2 + (cos(\alpha))^{2}
+                    \end{bmatrix}
+                    \\R^{T}R &=
+                    \begin{bmatrix}
+                        1 & 0 \\
+                        0 & 1 \\
+                    \end{bmatrix}
+                    \\R^{T}R &= I_{3} \\
+                \end{aligned}
+                \end{equasion}
+            
+            \item det(R) = 1 \\
+            
+                \begin{equasion}
+                \begin{aligned}
+                    det(R) &=&& cos(\alpha)cos(\alpha) - (-1)sin(\alpha)sin(\alpha) \\
+                           &=&& (cos(\alpha))^{2} + (sin(\alpha))^{2} \\
+                           &=&& 1
+                \end{aligned}
+                \end{equasion}
+        
+            \item $R(theta) = \begin{bmatrix} \hat{x}(\theta) & \hat{y}(\theta) \end{bmatrix}$ 
+            \rightarrow $\abs{\hat{x}(\theta)} = 1$ \textbf{and} $\abs{\hat{y}(\theta)} = 1$ \\
+            
+                \begin{equasion}
+                \begin{aligned}
+                    \abs{\hat{x}(\theta)} &=&& cos(\theta)cos(\theta)+sin(\alpha)sin(\alpha)
+                    \\                    &=&& 1
+                    \\
+                    \abs{\hat{y}(\theta)} &=&& (-1)sin(\alpha)(-1)sin(\alpha)+cos(\alpha)cos(\alpha)
+                    \\                    &=&& 1
+                \end{aligned}
+                \end{equasion}
+        \end{enumerate}
+
+\pagebreak
+    \item Determine the ZYZ Euler angles for the following rotation matrix (i.e. determine the angles $\alpha$, $beta$ and $\gamma$ so that R can be obtained through a ZYZ transformation).
+    
+    \begin{align}
+        R =
+        \begin{bmatrix}
+            -0.0474 & -0.7891 & 0.6124 \\
+             0.6597 &  0.4356 & 0.6124 \\
+            -0.7500 &  0.4330 & 0.5000
+        \end{bmatrix}
+    \end{align}
+    
+    \begin{equasion}
+    \begin{aligned}
+        \\ \alpha &= arctan(\frac{r_{23}}{r_{13}})
+        \\        &= arctan(\frac{0.6124}{0.6124})
+        \\        &= 0.7854 rad
+    \end{aligned}
+    \end{equasion}
+    
+    \begin{equasion}
+    \begin{aligned}
+        \\ \beta  &= arctan(\frac{(1)\sqrt{(r_{13})^{2}+(r_{23})^{2}}}{r_{23}})
+        \\        &= arctan(\frac{\sqrt{(0.6124)^{2}+(0.6124)^{2}}}{0.6124})
+        \\        &= arctan(\frac{\sqrt{0.3750 + 0.3750}}{0.6124})
+        \\        &= arctan(\frac{\sqrt{0.7501}}{0.6124})
+        \\        &= arctan(\frac{0.8661}{0.6124})
+        \\        &= arctan(1.4142)
+        \\        &= 0.9553 rad
+    \end{aligned}
+    \end{equasion}
+    
+    \begin{equasion}
+    \begin{aligned}
+        \\ \gamma &= arctan(\frac{\pm r_{32}}{ \mp r_{31}})
+        \\        &= arctan(\frac{(1)(0.4330)}{(-1)(-0.7500)})
+        \\        &= arctan(\frac{0.4330}{0.7500})
+        \\        &= arctan(0.5773)
+        \\        &= 0.5236 rad
+    \end{aligned}
+    \end{equasion}
+\pagebreak
+
+\item 
+    We are given two reference frames A = \{ O - xyz \} and B = \{ O' - x'y'z' \} where: \\
+    
+    \begin{equasion}
+    \begin{aligned}
+        \\ O  &= \begin{bmatrix}5 & 10 & 15 \end{bmatrix}^{T}
+        \\ x  &= \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}^{T}
+        \\ y  &= \begin{bmatrix} 0 & 1 & 0 \end{bmatrix}^{T}
+        \\ z  &= \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}^{T}
+        \\
+        \\ O' &= \begin{bmatrix} 0.0000 &  0.5000 &  0.8660 \end{bmatrix}^{T}
+        \\ x' &= \begin{bmatrix}-0.7071 & -0.6124 &  0.3536 \end{bmatrix}^{T}
+        \\ y' &= \begin{bmatrix} 0.7071 & -0.6124 &  0.3536 \end{bmatrix}^{T}
+        \\ z  &= \begin{bmatrix} 0.7071 & -0.6124 &  0.3536 \end{bmatrix}^{T}
+        \\
+    \end{aligned}
+    \end{equasion}
+    
+    If additionally we are given a point $p$, expressed with respect to the B frame:
+    
+    \begin{align}
+        ^{B}p = \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}
+    \end{align}
+    
+    What is $^{A}p$, the point $p$ expressed with respect to the A reference frame?
+    
+    \begin{equasion}
+    \begin{aligned}
+    ^{A}_{B}R   &=  \begin{bmatrix}
+                        ^{A}\Hat{X}_{B} & ^{A}\Hat{Y}_{B} & ^{A}\Hat{Z}_{B}
+                    \end{bmatrix} \\
+                &=  \begin{bmatrix}
+                        \Hat{X}_{B} \cdot \Hat{X}_{A} & \Hat{Y}_{B} \cdot \Hat{X}_{A} & \Hat{Z}_{B} \cdot \Hat{X}_{A} \\
+                        \Hat{X}_{B} \cdot \Hat{Y}_{A} & \Hat{Y}_{B} \cdot \Hat{Y}_{A} & \Hat{Z}_{B} \cdot \Hat{Y}_{A} \\
+                        \Hat{X}_{B} \cdot \Hat{Z}_{A} & \Hat{Y}_{B} \cdot \Hat{Z}_{A} & \Hat{Z}_{B} \cdot \Hat{Z}_{A} 
+                    \end{bmatrix}
+                &=  \begin{bmatrix}
+                        +0.0000 & +0.5000 & +0.8660 \\
+                        -0.7071 & -0.6124 & +0.3536 \\
+                        +0.7071 & -0.6124 & +0.3536
+                    \end{bmatrix}
+    \end{aligned}
+    \end{equasion}\\
+    
+    
+    \begin{equasion}
+    \begin{aligned}
+        ^{A}O'  &=  O' - O \\
+                &=  \begin{bmatrix} 8 \\ 3 \\ -1 \end{bmatrix} - \begin{bmatrix} 5 \\ 10 \\ 15 \end{bmatrix}
+                &=  \begin{bmatrix} 3 \\ 7 \\ -16 \end{bmatrix}
+    \end{aligned}
+    \end{equasion}\\
+    
+    \begin{equasion}
+    \begin{aligned}
+        \begin{bmatrix} ^{A}P \\ 1 \end{bmatrix} 
+            &=
+                \begin{bmatrix} ^{A}_{B}R & ^{A}O_{B} \\ 0 & 1 \end{bmatrix}
+                \cdot
+                \begin{bmatrix} ^{B}P \\ 1 \end{bmatrix} \\
+            &=
+                \begin{bmatrix} 
+                     0.0000 &  0.5000 &  0.8660 &  3.0000 \\
+                    -0.7071 & -0.6124 &  0.3536 & -7.0000 \\
+                     0.7071 & -0.6124 &  0.3536 & -16.0000 \\
+                     0.0000 &  0.0000 &  0.0000 & 1.0000 
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                    1.0000 \\ 2.0000 \\ 3.0000 \\ 1.0000
+                \end{bmatrix} \\
+            &=
+                \begin{bmatrix} 3.5980 \\ -0.8711 \\ 0.5431 \\ 1.0000 \end{bmatrix}
+    \end{aligned}
+    \end{equasion}
+    
+        \therefore $^{A}P$ = \begin{bmatrix} 3.5980 \\ -0.8711 \\ 0.5431 \end{bmatrix}
+        
+    \begin{equasion}
+    \begin{aligned}
+        
+    \end{aligned}
+    \end{equasion}
+\end{enumerate}
+
+\end{document}
